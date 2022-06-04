@@ -1,0 +1,24 @@
+Color pallete
+
+Dark green
+BG: #214726
+Text: #F9F9F9
+
+Medium green
+BG: #3E8A69
+Text: #000000
+
+Turquoise
+BG: #4FB8B8
+Text: #000042
+
+Light blue
+BG: #4E9BCF
+Text default: #000042
+Text red: 54000D
+Text green: 003400
+Text yellow: FFFF00
+
+Dark blue
+BG: #222D59
+Text: #F9F9F9

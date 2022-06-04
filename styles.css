@@ -1,0 +1,163 @@
+* {
+    /*border: 1px solid red;*/
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    position:absolute; top:0; bottom:0; right:0; left:0;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.header {
+    padding: 1.5rem 2rem;
+    background-color: #222D59;
+    color: #F9F9F9;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.section1 {
+    padding: 1.5rem 2rem;
+    background-color: #4E9BCF;
+    color: #000042;
+    font-size: 1.325rem;
+}
+
+.callToAction {
+    background-color: #4E9BCF;
+    text-align: center;
+    
+}
+
+#p2 {
+    font-weight: bold;
+}
+
+.buttonsDiv {
+    padding: 1rem 0;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
+button {
+    background-color: #222D59;
+    color: #F9F9F9;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem 2rem;
+    font-size: 1.125rem;
+    white-space: nowrap;
+    margin: 0 1rem;
+    min-width: 150px;
+    cursor: pointer;
+    border: 2px solid #222D59;
+}
+
+button:hover {
+    border: 2px solid gold;
+}
+
+.section2 {
+    padding: 1.5rem 2rem;
+    background-color: #50B8B8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top: 1px solid #222D59;
+    border-bottom: 1px solid #222D59;
+}
+
+.scoreTitle, .roundsTitle {
+    color: #000042;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
+
+.scoreBoxes {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    border: 1px solid #222D59;
+}
+
+.playerScoreBox, .computerScoreBox {
+    color: #000042;
+    font-size: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    min-width: 7rem;
+}
+
+.playerScoreBox { 
+    justify-content: end;
+}
+
+.computerScoreBox { 
+    justify-content: start;
+}
+
+#playerScore, #computerScore {
+    font-size: 3rem;
+}
+
+.section3 {
+    padding: 1.5rem 2rem;
+    background-color: #50B8B8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+.roundRow, .roundSelections, .playerSelectionContainer, .computerSelectionContainer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+}
+
+.roundSelections {
+    gap: 3rem;
+}
+
+.roundRow {
+    margin: 4px 0;
+}
+
+.playerSelectionContainer, .computerSelectionContainer {
+    color: #000042;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    min-width: 130px;
+}
+
+.roundNumber {
+    color: #000042;
+    font-size: 1.2rem;
+    min-width: 105px;
+}
+
+.footer {
+    padding: 1rem 2rem;
+    background-color: #222D59;
+    color: #F9F9F9;
+    text-align: center;
+}
+
+.header, .section1, .section2, .footer {
+    overflow: hidden;
+}
+
+.section3 {
+    overflow: auto;
+}

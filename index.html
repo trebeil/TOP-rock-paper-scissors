@@ -3,10 +3,58 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <script src="script.js"></script>
+        <script src="script.js" defer></script>
+        <link rel="stylesheet" href="styles.css">
         <title>Rock Paper Scissors</title>
     </head>
     <body>
-        
+        <div class="header">
+            Let's Rock, Paper, Scissors!
+        </div>
+        <div class="section1">
+            <div class="callToAction">
+                <p id="p1">Let the games begin...</p>
+                <p id="p2">CHOOSE YOUR WEAPON!</p>
+            </div>
+            <div class="buttonsDiv">
+                <button id="Rock">Rock</button>
+                <button id="Paper">Paper</button>
+                <button id="Scissors">Scissors</button>
+            </div>
+        </div>
+        <div class="section2">
+            <div class="scoreTitle">Score</div>
+            <div class="scoreBoxes">
+                <div class="playerScoreBox">
+                    <div>You</div>
+                    <div id="playerScore">0</div>
+                </div>
+                <div class="computerScoreBox">
+                    <div id="computerScore">0</div>
+                    <div>Com</div>
+                </div>
+            </div>
+        </div>
+        <div class="section3">
+            <div class="roundsTitle">Rounds</div>
+            <div class="roundRows">
+                <div class="roundRow round1">
+                    <div class="roundNumber round1">Round 1</div>
+                    <div class="roundSelections round1">
+                        <div class="playerSelectionContainer round1">
+                            <div>You</div>
+                            <div class="playerSelection round1"> - </div>
+                        </div>
+                        <div class="computerSelectionContainer round1">
+                            <div class="computerSelection round1"> - </div>
+                            <div>Com</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            &copy 2022 | trebeil - All rights reserved
+        </div>
     </body>
 </html>

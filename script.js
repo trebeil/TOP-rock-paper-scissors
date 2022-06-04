@@ -1,15 +1,4 @@
-/* PROBLEM
-Your game is going to play against the computer, so begin with a function called  computerPlay 
-that will randomly return either ‘Rock’, ‘Paper’ or ‘Scissors’. We’ll use this function in the 
-game to make the computer’s play.
-
-SOLUTION
-1. Calculate a random number between 0 and 1 (inclusive of 0, but not 1)
-
-2.If the number is between 0 (inclusive) and 1/3 (exclusive), return 'Rock'
-If the number is between 1/3 (inclusive) and 2/3 (exclusive), return 'Paper'
-If the number is between 2/3 (inclusive) and 1 (exclusive), return 'Scissors' */
-
+// Chooses an aleatory play for the Computer. Returns Rock, Paper or Scissors
 function computerPlay() {
     let randomNumber = Math.random();
     if (randomNumber >= 0 && randomNumber < 1/3) {
@@ -21,45 +10,7 @@ function computerPlay() {
     }
 }
 
-/* PROBLEM 
-Write a function that plays a single round of Rock Paper Scissors. The function should take two 
-parameters - the playerSelection and computerSelection - and then return a string that declares 
-the winner of the round like so: "You Lose! Paper beats Rock". Make your function’s playerSelection 
-parameter case-insensitive (so users can input rock, ROCK, RocK or any other variation).
-
-SOLUTION
-1. Adjust arguments so that the first letter is capitalized and the rest is lower case
- a. Standardize both arguments to lower case strings
- b. Capitalize first letter
-
-2. Check if player selection is a valid one (either 'Rock', 'Paper' or 'Scissors'). If so, 
-return true, else return false;
-
-3. Compare player selection and computer selection and returns 'win', 'lose' or 'draw'
-IF (the arguments are the same), return 'draw'
-ELSE IF (pair of arguments belongs to the set of winning pairs), return  'win' 
-ELSE return 'lose'
-
-Set of winning pairs:
-Rock AND Scissors
-Scissors AND Paper
-Paper AND Rock
-*/
-
-function adjustEntryString(string) {
-    const adjusted = string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
-    return adjusted;
-}
-
-function entryIsValid(playerSelection) {
-    if (playerSelection === 'Rock' || playerSelection === 'Paper' ||
-    playerSelection === 'Scissors') {
-        return true;
-    } else {
-        return false;
-    }
-}
-
+// With a player selection and a computer selection, plays a round. Returns win, lose or draw
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
         return `draw`
@@ -72,86 +23,129 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-/* PROBLEM
-Write a NEW function called game(). Call the playRound function inside of this one to play a 
-5 round game that keeps score and reports a winner or loser at the end.
+function resetScores() {
+    gamesLost = 0;
+    gamesWon = 0;
+}
 
-SOLUTION
-Prompt and validation
-    Prompt the user for a selection
-    Adjust the entry string (Capitalize first letter)
-    Check if the entry is valid. If not, repeat steps above until user hits Cancel or inputs a 
-    valid entry.
+//creates a new Round Row in DOM with round number, player selection and com selection
+function createRoundRow (round) {
+    let div1 = document.createElement('div');
+    div1.textContent = 'You';
+    let divPlayerSelection = document.createElement('div');
+    divPlayerSelection.classList.add(`playerSelection`,`round${round}`);
+    let divSelectionContainer1 = document.createElement('div');
+    divSelectionContainer1.classList.add(`playerSelectionContainer`,`round${round}`);
+    divSelectionContainer1.appendChild(div1);
+    divSelectionContainer1.appendChild(divPlayerSelection);
 
-At any time, if the user chooses Cancel, stop the game and print 'Game cancelled'
+    let divComputerSelection = document.createElement('div');
+    divComputerSelection.classList.add(`computerSelection`,`round${round}`);
+    let div2 = document.createElement('div');
+    div2.textContent = 'Com';
+    let divSelectionContainer2 = document.createElement('div');
+    divSelectionContainer2.classList.add(`computerSelectionContainer`,`round${round}`);
+    divSelectionContainer2.appendChild(divComputerSelection);
+    divSelectionContainer2.appendChild(div2);
 
-If choice is valid and user didn't hit Cancel, play a round, print the results (alert and 
-    console.log) and count wins and losses
+    let divRoundSelections = document.createElement('div');
+    divRoundSelections.classList.add(`roundSelections`,`round${round}`);
+    divRoundSelections.appendChild(divSelectionContainer1);
+    divRoundSelections.appendChild(divSelectionContainer2);
 
-After the 5th round has been played:
-IF (number of wins is bigger than number of losses), return ('You won! Congratulations!')
-ELSE IF (number of wins is smaller than number of losses), return ('You lost! Try again!')
-ELSE return ('It's a Draw!')
-*/
+    let divRoundNumber = document.createElement('div');
+    divRoundNumber.classList.add(`roundNumber`,`round${round}`);
+    divRoundNumber.textContent = `Round ${round}`;
 
-function game() {
-    let gamesWon = 0;
-    let gamesLost = 0;
-    let playerSelection;
+    let divRoundRow = document.createElement('div');
+    divRoundRow.classList.add(`roundRow`,`round${round}`);
+    divRoundRow.appendChild(divRoundNumber);
+    divRoundRow.appendChild(divRoundSelections);
 
-    for (let i = 0; i < 5; i++) {
-
-        playerSelection = prompt('Choose Rock, Paper or Scissors');
-
-        if (playerSelection === null){
-            break;
-        } else {
-            playerSelection = adjustEntryString(playerSelection);
-        }
-        
-        while (entryIsValid(playerSelection) === false && playerSelection !== null) {
-            alert('Invalid choice! Please try again.');
-            playerSelection = prompt('Choose Rock, Paper or Scissors');
-            if (playerSelection === null) {
-                break;
-            } else {
-            playerSelection = adjustEntryString(playerSelection);
-            }
-        }
-        
-        if (playerSelection === null) {
-            break;
-        } else { 
-            let computerSelection = computerPlay();
-            let result = playRound(playerSelection, computerSelection);
-            if (result === 'win') {
-                ++gamesWon;
-                alert(`Round ${i+1}: You Win! ${playerSelection} beats ${computerSelection}`);
-                console.log(`Round ${i+1}: You Win! ${playerSelection} beats ${computerSelection}`);
-            } else if (result === 'lose') {
-                ++gamesLost;
-                alert(`Round ${i+1}: You Lose! ${playerSelection} is beaten by ${computerSelection}`);
-                console.log(`Round ${i+1}: You Lose! ${playerSelection} is beaten by ${computerSelection}`);
-            } else {
-                alert(`Round ${i+1}: Draw! Both have chosen ${playerSelection}`);
-                console.log(`Round ${i+1}: Draw! Both have chosen ${playerSelection}`);
-            }
-        }
+    document.querySelector('.roundRows').appendChild(divRoundRow);
+}
+// If 1st round, resets the Rounds table
+// Calls function to create a new round line
+// Inputs player choice and com choice in the corresponding divs of the new round line
+function updateRound(playerSelection, computerSelection, result) {
+    if (round === 1) {
+        resetRounds();
     }
-
-    if (playerSelection === null) {
-        return 'Game cancelled';
-    }
+    createRoundRow(round);
     
-    if (gamesWon > gamesLost) {
-        return `Games won: ${gamesWon}\nGames lost: ${gamesLost}\nDraws: ${5 - gamesWon - gamesLost}\n\nYou\'re the winner! Congratulations!`
-    } else if (gamesWon < gamesLost) {
-        return `Games won: ${gamesWon}\nGames lost: ${gamesLost}\nDraws: ${5 - gamesWon - gamesLost}\n\nComputer won! Try again.`
+    let divPlayer = document.querySelector(`.playerSelection.round${round}`);
+    divPlayer.textContent = playerSelection;
+    let divComputer = document.querySelector(`.computerSelection.round${round}`);
+    divComputer.textContent = computerSelection;
+    
+    if (result === 'win') {
+        divPlayer.setAttribute('style', 'color: #003400');
+        divComputer.setAttribute('style', 'color: #54000D');
+    } else if (result === 'lose') {
+        divPlayer.setAttribute('style', 'color: #54000D');
+        divComputer.setAttribute('style', 'color: #003400');
     } else {
-        return `Games won: ${gamesWon}\nGames lost: ${gamesLost}\nDraws: ${5 - gamesWon - gamesLost}\n\nIt\'s a Draw!`
+        divPlayer.setAttribute('style', 'color: #FFFF00');
+        divComputer.setAttribute('style', 'color: #FFFF00');
+    }
+
+    let divSection3 = document.querySelector('.section3');
+    divSection3.scrollTop = divSection3.scrollHeight;
+
+    round++;
+}
+
+function resetRounds() {
+    let roundRows = document.querySelector('.roundRows');
+    roundRows.parentElement.removeChild(roundRows);
+    roundRows = document.createElement('div');
+    roundRows.classList.add('roundRows');
+    document.querySelector('.section3').appendChild(roundRows);
+}
+
+function updateScore(result) {
+    if (result === 'win') {
+        gamesWon++;
+    } else if (result === 'lose') {
+        gamesLost++;
+    }
+
+    if (gamesWon === 5) {
+        document.querySelector('#p1').textContent = `What a skill! You WIN!`;
+        document.querySelector('#p2').textContent = `Choose a weapon to start a new game`;
+        document.querySelector('#playerScore').textContent = gamesWon;
+        document.querySelector('#computerScore').textContent = gamesLost;
+    } else if (gamesLost === 5) {
+        document.querySelector('#p1').textContent = `The bitter taste of defeat. GAME OVER!`;
+        document.querySelector('#p2').textContent = `Choose a weapon to start a new game`;
+        document.querySelector('#playerScore').textContent = gamesWon;
+        document.querySelector('#computerScore').textContent = gamesLost;
+    } else {
+        document.querySelector('#p1').textContent = `The battle has begun! The first to reach 5 points is the Winner`;
+        document.querySelector('#p2').textContent = `Choose your next weapon!`;
+        document.querySelector('#playerScore').textContent = gamesWon;
+        document.querySelector('#computerScore').textContent = gamesLost;
     }
 }
 
-const gameResult = game();
-console.log(gameResult);
-alert(gameResult);
+let gamesWon = 0;
+let gamesLost = 0;
+let round = 1;
+let computerSelection;
+let playerSelection;
+
+const buttons = document.querySelectorAll('button');
+buttons.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+        if (gamesLost === 5 || gamesWon === 5) {
+            resetScores();
+            resetRounds();
+            round = 1;
+        }
+        playerSelection = e.target.id;
+        computerSelection = computerPlay();
+        let result = playRound(playerSelection, computerSelection);
+        updateRound(playerSelection, computerSelection, result);
+        updateScore(result);
+        })
+});
