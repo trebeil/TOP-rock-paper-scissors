@@ -161,3 +161,7 @@ button:hover {
 .section3 {
     overflow: auto;
 }
+
+a, a:visited {
+    color: #F9F9F9;
+}
